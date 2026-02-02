@@ -1,225 +1,299 @@
 /* =========================================
-   1. SETUP GLOBAL & VARIABEL
-   Bagian ini mengatur pondasi dasar website
+   1. RESET & PENGATURAN DASAR (GLOBAL)
    ========================================= */
 
-:root {
-    /* Variabel Warna: Mengubah nilai di sini akan mengubah warna seluruh web */
-    --warna-utama: #0056b3;       /* Biru tua untuk elemen penting */
-    --warna-sekunder: #e3f2fd;    /* Biru sangat muda untuk background selingan */
-    --warna-teks: #333333;        /* Abu-abu gelap untuk teks (lebih nyaman di mata daripada hitam pekat) */
-    --warna-putih: #ffffff;       /* Putih bersih */
-    --bayangan-halus: 0 4px 6px rgba(0, 0, 0, 0.1); /* Efek bayangan agar elemen terlihat timbul */
-}
-
+/* Memilih semua elemen (*) di halaman */
 * {
-    margin: 0;                    /* Menghapus margin bawaan browser */
-    padding: 0;                   /* Menghapus padding bawaan browser */
-    box-sizing: border-box;       /* Memastikan padding tidak menambah lebar elemen (sangat penting!) */
+  margin: 0; /* Menghapus jarak luar bawaan browser */
+  padding: 0; /* Menghapus jarak dalam bawaan browser */
+  box-sizing: border-box; /* Memastikan padding tidak menambah ukuran lebar elemen */
 }
 
+/* Pengaturan dasar untuk tag <html> */
+html {
+  scroll-behavior: smooth; /* Membuat efek scroll menjadi halus saat link diklik */
+}
+
+/* Pengaturan dasar untuk tag <body> */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Font modern yang aman untuk semua laptop */
-    line-height: 1.6;             /* Jarak antar baris teks agar mudah dibaca */
-    color: var(--warna-teks);     /* Menggunakan variabel warna teks */
-    background-color: #f9f9f9;    /* Warna latar belakang abu-abu sangat muda agar tidak silau */
+  font-family: 'Poppins', sans-serif; /* Menggunakan font Poppins sesuai link di HTML */
+  line-height: 1.6; /* Memberi jarak antar baris teks agar enak dibaca */
+  color: #333; /* Warna teks utama abu-abu gelap (tidak hitam pekat agar mata nyaman) */
+  background-color: #f9f9f9; /* Warna background halaman sedikit abu-abu */
 }
 
-/* Mengatur wadah utama agar konten tidak terlalu lebar di layar besar */
-.container {
-    max-width: 1200px;            /* Lebar maksimal konten 1200px */
-    margin: 0 auto;               /* Posisi otomatis di tengah (kiri-kanan) */
-    padding: 0 20px;              /* Memberi jarak aman di sisi kiri dan kanan layar HP */
+/* Menghilangkan garis bawah pada semua link */
+a {
+  text-decoration: none;
+}
+
+/* Menghilangkan titik-titik (bullet) pada list */
+ul {
+  list-style: none;
 }
 
 /* =========================================
-   2. NAVIGASI (NAVBAR)
-   Menu di bagian atas
+   2. VARIABEL WARNA (Agar konsisten)
    ========================================= */
+:root {
+  --navy-dark: #0a192f;   /* Warna Navy Gelap untuk Footer/Hero */
+  --navy-primary: #112240; /* Warna Navy Utama */
+  --blue-accent: #64ffda;  /* Aksen Biru Muda (Teal/Cyan) yang modern */
+  --blue-link: #3498db;    /* Biru standar untuk tombol/link */
+  --white: #ffffff;
+  --gray-light: #e6f1ff;   /* Background section selang-seling */
+}
+
+/* =========================================
+   3. HEADER & NAVIGASI
+   ========================================= */
+header {
+  background-color: var(--navy-dark); /* Background header warna Navy */
+  padding: 1rem 5%; /* Jarak atas-bawah 1rem, kiri-kanan 5% */
+  position: sticky; /* Membuat navigasi menempel saat discroll */
+  top: 0; /* Menempel di bagian paling atas */
+  z-index: 1000; /* Memastikan navigasi selalu di atas elemen lain */
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1); /* Memberi bayangan halus di bawah header */
+}
 
 nav {
-    background-color: var(--warna-utama); /* Latar belakang biru tua */
-    color: var(--warna-putih);            /* Teks warna putih */
-    padding: 1rem 0;                      /* Jarak atas-bawah 1 rem (sekitar 16px) */
-    position: sticky;                     /* Membuat navbar tetap menempel saat discroll (opsional) */
-    top: 0;                               /* Menempel di bagian paling atas */
-    z-index: 1000;                        /* Memastikan navbar selalu di atas elemen lain */
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);/* Bayangan di bawah navbar */
+  display: flex; /* Menggunakan Flexbox untuk menata Logo dan Menu */
+  justify-content: space-between; /* Memberi jarak maksimal antara Logo (kiri) dan Menu (kanan) */
+  align-items: center; /* Menengahkan item secara vertikal */
+  max-width: 1200px; /* Lebar maksimal konten agar tidak terlalu melebar di layar besar */
+  margin: 0 auto; /* Posisi tengah otomatis */
 }
 
-/* Menggunakan Flexbox untuk menata isi navbar */
-nav .container {
-    display: flex;                /* Mengaktifkan mode Flexbox */
-    justify-content: space-between; /* Membuat logo di kiri, menu di kanan */
-    align-items: center;          /* Memastikan posisi vertikal di tengah */
+.logo {
+  font-size: 1.5rem; /* Ukuran font logo */
+  font-weight: 700; /* Ketebalan font tebal */
+  color: var(--white); /* Warna teks putih */
 }
 
-nav h1 {
-    font-size: 1.5rem;            /* Ukuran font logo/judul */
-    font-weight: bold;            /* Menebalkan huruf */
+.logo span {
+  color: var(--blue-link); /* Mewarnai kata "Tiga" dengan biru muda */
 }
 
-nav ul {
-    list-style: none;             /* Menghilangkan titik-titik (bullet) pada list */
-    display: flex;                /* Membuat menu berjejer ke samping */
-    gap: 20px;                    /* Memberi jarak antar menu */
+.nav-links {
+  display: flex; /* Membuat menu (ul) berjejer ke samping */
+  gap: 2rem; /* Memberi jarak antar menu */
 }
 
-nav a {
-    text-decoration: none;        /* Menghilangkan garis bawah pada link */
-    color: var(--warna-putih);    /* Warna link putih */
-    font-weight: 500;             /* Ketebalan huruf sedang */
-    transition: color 0.3s;       /* Efek transisi halus saat disentuh kursor */
+.nav-links a {
+  color: var(--white); /* Warna teks menu putih */
+  font-weight: 500; /* Ketebalan font sedang */
+  transition: 0.3s; /* Efek transisi halus saat di-hover */
 }
 
-nav a:hover {
-    color: #ffd700;               /* Ubah warna jadi emas saat kursor diarahkan (hover) */
+.nav-links a:hover {
+  color: var(--blue-link); /* Berubah jadi biru muda saat kursor diarahkan */
 }
 
 /* =========================================
-   3. HERO SECTION (BERANDA)
-   Bagian pembuka yang menarik perhatian
+   4. HERO SECTION (Bagian Utama)
    ========================================= */
-
-#hero {
-    background: linear-gradient(135deg, var(--warna-utama), #003d80); /* Gradasi warna biru keren */
-    color: var(--warna-putih);    /* Teks putih */
-    text-align: center;           /* Teks rata tengah */
-    padding: 100px 20px;          /* Jarak dalam yang luas agar terlihat gagah */
+.hero-kelompok {
+  height: 100vh; /* Tinggi memenuhi 100% layar laptop */
+  background: linear-gradient(rgba(10, 25, 47, 0.8), rgba(10, 25, 47, 0.8)), url('img/hero-bg.jpg'); 
+  /* ^ Background gabungan: lapisan warna navy transparan + gambar (pastikan ada gambar atau ganti warna solid) */
+  background-color: var(--navy-primary); /* Warna cadangan jika gambar tidak muncul */
+  background-size: cover; /* Gambar menutupi seluruh area */
+  background-position: center; /* Gambar fokus di tengah */
+  display: flex; /* Flexbox untuk menengahkan konten */
+  align-items: center; /* Tengah secara vertikal */
+  justify-content: center; /* Tengah secara horizontal */
+  text-align: center; /* Teks rata tengah */
+  color: var(--white);
 }
 
-#hero h2 {
-    font-size: 2.5rem;            /* Judul besar */
-    margin-bottom: 20px;          /* Jarak bawah judul */
+.hero-overlay h1 {
+  font-size: 3.5rem; /* Ukuran judul besar */
+  margin-bottom: 1rem;
 }
 
-#hero p {
-    font-size: 1.2rem;            /* Ukuran teks deskripsi */
-    max-width: 600px;             /* Membatasi lebar teks agar tidak terlalu panjang */
-    margin: 0 auto 30px auto;     /* Posisi tengah dan jarak bawah */
+.hero-overlay p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  opacity: 0.8; /* Membuat teks sedikit transparan agar elegan */
 }
 
-/* Tombol Aksi (Call to Action) */
-.btn {
-    display: inline-block;        /* Agar bisa diberi padding dan margin */
-    background-color: var(--warna-putih); /* Tombol putih */
-    color: var(--warna-utama);    /* Teks biru */
-    padding: 10px 30px;           /* Ukuran tombol */
-    border-radius: 50px;          /* Membuat sudut tombol bulat (kapsul) */
-    text-decoration: none;        /* Hapus garis bawah link */
-    font-weight: bold;            /* Teks tebal */
-    transition: transform 0.3s;   /* Animasi saat ditekan */
+/* Tombol CTA (Call to Action) */
+.btn-cek {
+  display: inline-block;
+  padding: 12px 30px; /* Jarak dalam tombol */
+  background-color: var(--blue-link); /* Warna background biru muda */
+  color: var(--white);
+  border-radius: 5px; /* Sudut tombol melengkung */
+  font-weight: 600;
+  transition: all 0.3s ease;
 }
 
-.btn:hover {
-    transform: scale(1.05);       /* Membesar sedikit saat di-hover */
+.btn-cek:hover {
+  background-color: #2980b9; /* Warna lebih gelap saat hover */
+  transform: translateY(-3px); /* Efek tombol naik sedikit saat hover */
 }
 
 /* =========================================
-   4. PENGATURAN BAGIAN (SECTION) UMUM
-   Agar setiap bagian punya jarak yang konsisten
+   5. UTILITIES (Pengaturan Umum Section)
    ========================================= */
-
-section {
-    padding: 60px 0;              /* Jarak vertikal antar bagian */
+.section-container {
+  padding: 5rem 5%; /* Jarak spasi (padding) yang luas agar desain terlihat "bernapas" */
 }
 
-section h2 {
-    text-align: center;           /* Judul bagian rata tengah */
-    margin-bottom: 40px;          /* Jarak antara judul dan konten di bawahnya */
-    color: var(--warna-utama);    /* Warna judul biru */
-    font-size: 2rem;              /* Ukuran font judul */
+.container {
+  max-width: 1200px; /* Batas lebar konten agar rapi di laptop */
+  margin: 0 auto; /* Posisi tengah */
+}
+
+.section-title {
+  text-align: center; /* Judul section rata tengah */
+  margin-bottom: 3rem; /* Jarak judul ke konten di bawahnya */
+  font-size: 2rem;
+  color: var(--navy-primary);
+  position: relative;
+}
+
+/* Garis hiasan di bawah judul */
+.section-title::after {
+  content: '';
+  display: block;
+  width: 60px; /* Panjang garis */
+  height: 3px; /* Ketebalan garis */
+  background: var(--blue-link); /* Warna garis */
+  margin: 10px auto 0; /* Posisi tengah */
+}
+
+.bg-light {
+  background-color: #f0f4f8; /* Background biru sangat muda/abu */
+}
+
+.bg-white {
+  background-color: var(--white);
 }
 
 /* =========================================
-   5. ANGGOTA KELOMPOK (GRID SYSTEM)
-   Kartu anggota yang responsif
+   6. GRID ANGGOTA KELOMPOK
    ========================================= */
-
-#anggota {
-    background-color: var(--warna-putih); /* Latar belakang putih */
+.kelompok-grid {
+  display: grid; /* Menggunakan CSS Grid */
+  /* Logika Grid: Membuat kolom otomatis. Minimal lebar kartu 280px, jika layar lebar, kartu akan menyesuaikan (fit) */
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+  gap: 2rem; /* Jarak antar kartu */
 }
 
-.grid-container {
-    display: grid;                /* Menggunakan CSS Grid (Sangat powerful!) */
-    /* Baris di bawah ini ajaib: membuat kolom otomatis menyesuaikan layar */
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px;                    /* Jarak antar kartu */
+.kelompok-card {
+  background: var(--white);
+  border-radius: 10px; /* Melengkungkan sudut kartu */
+  overflow: hidden; /* Agar gambar tidak keluar dari lengkungan */
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05); /* Bayangan halus */
+  transition: transform 0.3s ease; /* Transisi untuk efek hover */
+  border: 1px solid #eee; /* Garis tipis */
+  display: block; /* Agar link membungkus seluruh area div */
 }
 
-.card {
-    background: white;            /* Warna kartu */
-    padding: 20px;                /* Jarak dalam kartu */
-    border-radius: 10px;          /* Sudut kartu melengkung */
-    box-shadow: var(--bayangan-halus); /* Memberi efek bayangan 3D */
-    text-align: center;           /* Isi kartu rata tengah */
-    border-top: 5px solid var(--warna-utama); /* Hiasan garis biru di atas kartu */
-    transition: transform 0.3s;   /* Animasi gerak */
+.kelompok-card:hover {
+  transform: translateY(-10px); /* Kartu naik ke atas saat hover */
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1); /* Bayangan makin tebal */
 }
 
-.card:hover {
-    transform: translateY(-5px);  /* Kartu naik sedikit saat di-hover */
+.card-img {
+  height: 200px; /* Tinggi area gambar tetap */
+  width: 100%;
+  background-color: #ddd; /* Warna cadangan */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
 }
 
-.card h3 {
-    margin: 15px 0;               /* Jarak nama anggota */
-    color: #333;                  /* Warna nama gelap */
+.card-img img {
+  width: 100px; /* Ukuran logo */
+  height: auto;
+  object-fit: contain; /* Agar gambar proporsional */
+}
+
+.card-info {
+  padding: 1.5rem; /* Jarak teks di dalam kartu */
+  text-align: center;
+}
+
+.card-info h3 {
+  font-size: 1.1rem;
+  color: var(--navy-primary);
+  margin-bottom: 0.5rem;
+}
+
+.card-info p {
+  color: #666;
+  font-size: 0.9rem;
 }
 
 /* =========================================
-   6. MAKALAH / LAPORAN
-   Tampilan teks dokumen
+   7. LAPORAN & VIDEO (Layout Flex)
    ========================================= */
-
-#makalah {
-    background-color: var(--warna-sekunder); /* Latar biru muda agar beda section */
+.content-wrapper, .video-wrapper {
+  display: flex; /* Konten kiri (PDF/Video) dan kanan (Teks) sejajar */
+  flex-direction: column; /* Default HP: Atas bawah */
+  gap: 2rem;
+  align-items: center;
 }
 
-.paper-content {
-    background: white;            /* Kertas putih */
-    padding: 40px;                /* Jarak dalam kertas */
-    border-radius: 8px;           /* Sudut kertas */
-    box-shadow: var(--bayangan-halus); /* Bayangan */
-    max-width: 800px;             /* Lebar maksimal agar enak dibaca seperti buku */
-    margin: 0 auto;               /* Posisi tengah */
+/* Trik Responsive Iframe (Agar video/pdf responsif 16:9) */
+.pdf-container, .video-container {
+  width: 100%;
+  max-width: 800px;
+  aspect-ratio: 16 / 9; /* Rasio layar lebar */
+  background: #000;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
 }
 
-/* =========================================
-   7. DOKUMENTASI VIDEO
-   ========================================= */
-
-#video {
-    text-align: center;           /* Video di tengah */
-    background-color: var(--warna-putih);
-}
-
-.video-wrapper {
-    max-width: 800px;             /* Lebar maksimal video */
-    margin: 0 auto;               /* Posisi tengah */
-    border-radius: 10px;          /* Sudut video melengkung */
-    overflow: hidden;             /* Memastikan video tidak keluar dari sudut melengkung */
-    box-shadow: var(--bayangan-halus);
-}
-
-iframe {
-    width: 100%;                  /* Lebar penuh mengikuti wrapper */
-    height: 450px;                /* Tinggi video (bisa disesuaikan) */
-    border: none;                 /* Hapus border bawaan */
+.content-desc, .video-desc {
+  text-align: center;
+  max-width: 600px;
 }
 
 /* =========================================
    8. FOOTER
-   Bagian paling bawah
    ========================================= */
-
 footer {
-    background-color: #333;       /* Latar gelap */
-    color: white;                 /* Teks putih */
-    text-align: center;           /* Rata tengah */
-    padding: 20px 0;              /* Jarak atas bawah */
-    margin-top: auto;             /* Mendorong footer ke bawah jika konten sedikit */
+  background-color: var(--navy-dark);
+  color: var(--white);
+  text-align: center;
+  padding: 2rem;
+  margin-top: auto;
 }
 
-footer p {
-    font-size: 0.9rem;            /* Ukuran font agak kecil */
+/* =========================================
+   9. RESPONSIVE (MEDIA QUERY)
+   ========================================= */
+/* Aturan khusus untuk layar Laptop/Desktop (Lebar di atas 768px) */
+@media (min-width: 768px) {
+  .hero-overlay h1 {
+    font-size: 4rem; /* Judul lebih besar di laptop */
+  }
+  
+  /* Membuat nav menu tetap tampil (bukan hamburger) */
+  .nav-links {
+    display: flex; 
+  }
+}
+
+/* Aturan khusus untuk layar HP Kecil (Lebar di bawah 768px) */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none; /* (Opsional) Kamu mungkin butuh JavaScript untuk menu mobile */
+    /* Untuk sementara di tutorial CSS dasar, kita biarkan tampil menumpuk atau disembunyikan */
+  }
+  
+  /* Kalau mau simpel di HP tanpa JS, tampilkan menu kecil di bawah logo: */
+  nav {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .nav-links {
+    display: flex;
+    font-size: 0.9rem;
+  }
 }
